@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Reset Status Task</title>
+    <link rel="stylesheet" href="{% static 'UserStatus/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'UserStatus/assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'UserStatus/assets/css/Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'UserStatus/assets/css/Pretty-Registration-Form.css' %}">
+    <link rel="stylesheet" href="{% static 'UserStatus/assets/css/styles.css' %}">
+</head>
+
+<body style="color: rgb(0,0,0);">
+    <nav class="navbar navbar-light navbar-expand-md shadow-sm" style="background-color: #f7f7f7;">
+        <div class="container-fluid"><a class="navbar-brand" href="#"><strong>Customer</strong> <strong><em>Dashboard</em></strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse d-lg-flex justify-content-lg-end align-items-lg-end" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"></li>
+                </ul><a href="{% url 'logout' %}"><button class="btn btn-primary" type="button">Logout</button></a></div>
+        </div>
+    </nav>
+    {% if not is_active_status %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Select your current workload status?</h4><select name="status" class="border-primary shadow-sm custom-select custom-select-sm" style="background-color: rgb(247,247,247);width: 150px;"><optgroup label="Select Your Status..."><option value="Neutral" selected>Neutral</option><option value="At Capacity">At Capacity</option><option value="Looking For Work">Looking For Work</option></optgroup></select></div>
+    </div>
+    
+    <button  type="submit" style="color:blue;">Submit</button>
+    
+    
+    </form>
+    {% endif %}
+    <h3>Your current status is '{{status}}'</h3>
+    <script src="{% static 'UserStatus/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'UserStatus/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
